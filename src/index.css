@@ -1,0 +1,53 @@
+@import "tailwindcss";
+
+/* Estilos responsivos */
+@media (max-width: 768px) {
+  .prose {
+    padding: 1rem;
+  }
+
+  .grid {
+    grid-template-columns: 1fr;
+  }
+
+  nav {
+    width: 100%;
+  }
+
+  main {
+    padding: 1rem;
+  }
+}
+
+@media (max-width: 1024px) {
+  .grid {
+    grid-template-columns: 1fr;
+  }
+}
+
+/* Añadir estilos responsivos para mejorar la visualización en dispositivos móviles */
+@media (max-width: 640px) {
+  .prose {
+    padding: 0.5rem;
+  }
+
+  h1 {
+    font-size: 1.875rem; /* 30px */
+  }
+
+  h2 {
+    font-size: 1.5rem; /* 24px */
+  }
+
+  p {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  select {
+    font-size: 0.875rem; /* 14px */
+  }
+
+  .rounded-lg {
+    border-radius: 0.5rem; /* 8px */
+  }
+}
