@@ -16,7 +16,7 @@
 Aplicación web interactiva para el aprendizaje de estadística, orientada a estudiantes de **ciencias de la salud** y áreas afines. Permite consultar teoría, practicar ejercicios y visualizar ejemplos interactivos con una interfaz moderna y accesible.
 
 <div align="center">
-  <img src="https://via.placeholder.com/800x400?text=Estadistica+App+Screenshot" alt="Vista previa de Estadística App" width="80%" />
+  <img src="https://artur282.github.io/estadistica-app/" alt="Vista previa de Estadística App" width="80%" />
 </div>
 
 ## ✨ Características principales
@@ -125,8 +125,7 @@ La aplicación abarca los siguientes temas estadísticos:
 - [x] Visualizaciones de distribución normal
 - [ ] Perfil de usuario y progreso con IndexedDB
 - [ ] Modo oscuro/claro
-- [ ] Perfil de usuario
-- [ ] Módulo de estadística avanzada
+- [ ] Animaciones con Motion
 
 ## 👥 Contribución
 
