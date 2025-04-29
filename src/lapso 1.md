@@ -25,7 +25,7 @@ lapso 1
 5.3- Coeficiente de Correlación.
 5.4.- Interpretación.
 
-lapso 2 y 3
+lapso 2
 
 1.1.- Probabilidades.
 
@@ -50,13 +50,15 @@ lapso 2 y 3
 - Para estimar la media poblacional.
 - Para estimar la proporción poblacional.
 
+lapso 3
+
   1.2.- Propiedades, aplicaciones y cálculos de Distribuciones de Probabilidades.
   1.3.- Distribución Binomial.
   1.4.- Distribución Poisson.
   1.2.- Propiedades, aplicaciones y cálculos de Distribuciones de Probabilidades.
   1.5.- Distribución Normal.
 
-lapso 4 y 5
+lapso 4
 
 1.1.-Hipótesis Estadística:
 
@@ -81,6 +83,8 @@ lapso 4 y 5
 - Tipos.
 - Indicadores Demográficos.
 - Tasas Demográficas.
+
+lapso 5
 
   1.1.- Demografía. (Cálculos)
   2.1.- Indicadores Demográficos.
