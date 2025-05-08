@@ -1,0 +1,23 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="utf-8">
+  <title>Estadística App - Redireccionando</title>
+  <script type="text/javascript">
+    // Redireccionar a la página principal manteniendo la URL
+    var pathSegmentsToKeep = 1; // Mantener /estadistica-app/ 
+    var l = window.location;
+    l.replace(
+      l.protocol + '//' + l.hostname + (l.port ? ':' + l.port : '') +
+      l.pathname.split('/').slice(0, 1 + pathSegmentsToKeep).join('/') + '/?/' +
+      l.pathname.slice(1).split('/').slice(pathSegmentsToKeep).join('/') +
+      (l.search ? '&' + l.search.slice(1) : '') +
+      l.hash
+    );
+  </script>
+</head>
+<body>
+  <h1>Redireccionando...</h1>
+  <p>Si no eres redireccionado automáticamente, <a href="/estadistica-app/">haz clic aquí</a>.</p>
+</body>
+</html>

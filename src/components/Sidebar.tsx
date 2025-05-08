@@ -12,7 +12,10 @@ interface SidebarProps {
   toggleSidebar: () => void;
 }
 
-export default function Sidebar({ isSidebarOpen, toggleSidebar }: SidebarProps) {
+export default function Sidebar({
+  isSidebarOpen,
+  toggleSidebar,
+}: SidebarProps) {
   return (
     <>
       {/* Botón para alternar el sidebar en pantallas pequeñas */}
@@ -67,4 +70,3 @@ export default function Sidebar({ isSidebarOpen, toggleSidebar }: SidebarProps) 
     </>
   );
 }
-

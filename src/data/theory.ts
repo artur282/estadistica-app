@@ -411,9 +411,63 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 2,
   },
 
-  // ================================= LAPSO 4-5 =================================
+  // ================================= LAPSO 3 =================================
   {
     id: 33,
+    title: "1.2.- Propiedades, aplicaciones y cálculos de Distribuciones de Probabilidades",
+    content: `Características fundamentales:
+    - Función de probabilidad/densidad
+    - Función de distribución acumulada
+    - Esperanza matemática (media)
+    - Varianza y desviación estándar
+    - Aplicaciones en diagnóstico y pronóstico`,
+    formula: "E(X) = \\sum x_i \\cdot P(x_i) \\quad \\sigma^2 = E[(X-\\mu)^2]",
+    example: "Distribución de niveles de colesterol en población sana",
+    lapso: 3,
+  },
+  {
+    id: 34,
+    title: "1.3.- Distribución Binomial",
+    content: `Modelo para eventos dicotómicos:
+    - Ensayos independientes
+    - Probabilidad constante p
+    - Solo dos resultados (éxito/fracaso)
+    - Número fijo de ensayos n
+    - Media: np, Varianza: np(1-p)`,
+    formula: "P(X=k) = \\binom{n}{k} p^k (1-p)^{n-k}",
+    example: "Remisión en n=20 pacientes con p=0.3 de éxito por tratamiento",
+    lapso: 3,
+  },
+  {
+    id: 35,
+    title: "1.4.- Distribución Poisson",
+    content: `Para eventos raros en intervalo fijo:
+    - Tasa media λ (lambda)
+    - Eventos independientes
+    - Probabilidad proporcional al intervalo
+    - Media = Varianza = λ
+    - Aproxima binomial cuando n grande, p pequeño`,
+    formula: "P(X=k) = \\frac{e^{-\\lambda} \\lambda^k}{k!}",
+    example: "Llegadas a emergencias: λ=5 pacientes/hora",
+    lapso: 3,
+  },
+  {
+    id: 36,
+    title: "1.5.- Distribución Normal",
+    content: `Modelo continuo fundamental:
+    - Forma de campana simétrica
+    - Parámetros μ (media) y σ (desviación estándar)
+    - Regla 68-95-99.7% (1σ-2σ-3σ)
+    - Estandarización: Z = (X-μ)/σ
+    - Teorema del límite central`,
+    formula: "f(x) = \\frac{1}{\\sigma\\sqrt{2\\pi}} e^{-\\frac{1}{2}(\\frac{x-\\mu}{\\sigma})^2}",
+    example: "Presión arterial: μ=120 mmHg, σ=10 mmHg → 95% entre 100-140 mmHg",
+    lapso: 3,
+  },
+
+  // ================================= LAPSO 4-5 =================================
+  {
+    id: 37,
     title: "1.1.- Hipótesis Estadística",
     content: `Contraste de afirmaciones:
     - H₀: No efecto/diferencia (status quo)
@@ -425,7 +479,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 4,
   },
   {
-    id: 34,
+    id: 38,
     title: "2.1.- Pruebas Unilaterales/Bilaterales",
     content: `Elección según hipótesis:
     - Bilateral: H₁: μ≠μ0 (dos colas)
@@ -436,7 +490,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 4,
   },
   {
-    id: 35,
+    id: 39,
     title: "2.2.- Errores Tipo I y II",
     content: `Riesgos en decisión:
     - α = P(Rechazar H₀ | H₀ verdadera) (Falso positivo)
@@ -447,7 +501,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 4,
   },
   {
-    id: 36,
+    id: 40,
     title: "2.3.- Pruebas para Muestras Pequeñas",
     content: `Uso de distribución t-Student:
     - n < 30
@@ -459,7 +513,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 4,
   },
   {
-    id: 37,
+    id: 41,
     title: "2.4.- Pruebas con Distribución t y Normal",
     content: `Comparación entre distribuciones:
     - t-Student: Muestras pequeñas (n < 30), σ desconocida
@@ -472,7 +526,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 4,
   },
   {
-    id: 38,
+    id: 42,
     title: "1.1.- Demografía: Conceptos",
     content: `Estudio cuantitativo de poblaciones:
     - Estructura por edad/sexo (pirámides poblacionales)
@@ -486,7 +540,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 5,
   },
   {
-    id: 39,
+    id: 43,
     title: "2.1.- Indicadores Demográficos",
     content: `Medidas fundamentales:
     1. Tasa mortalidad infantil = (Defunciones <1 año/Nacidos vivos) × 1000
@@ -499,7 +553,7 @@ export const statisticsTopics: TheoryTopic[] = [
     lapso: 5,
   },
   {
-    id: 40,
+    id: 44,
     title: "2.2.- Tasas Demográficas",
     content: `Cálculo y ajuste de tasas:
     - Crudas: Sin ajustar por estructura poblacional

@@ -386,9 +386,71 @@ export const exercises: Exercise[] = [
     lapso: 2,
   },
 
-  // ================================= LAPSO 4 =================================
+  // ================================= LAPSO 3 =================================
   {
     id: 33,
+    topicId: 33,
+    title: "Propiedades de Distribuciones",
+    question: "¿Cuál es la fórmula para calcular la esperanza matemática de una variable discreta?",
+    options: [
+      "E(X) = ∑ x_i · P(x_i)",
+      "E(X) = ∑ P(x_i)",
+      "E(X) = ∑ x_i",
+      "E(X) = ∑ x_i / n"
+    ],
+    correctAnswer: "E(X) = ∑ x_i · P(x_i)",
+    explanation: "La esperanza matemática (media) es la suma de cada valor multiplicado por su probabilidad.",
+    lapso: 3,
+  },
+  {
+    id: 34,
+    topicId: 34,
+    title: "Distribución Binomial",
+    question: "En una distribución binomial con n=15 y p=0.2, ¿cuál es la probabilidad de exactamente 3 éxitos?",
+    options: [
+      "0.251",
+      "0.215",
+      "0.300",
+      "0.180"
+    ],
+    correctAnswer: "0.251",
+    explanation: "P(X=3) = C(15,3) · 0.2³ · 0.8¹² ≈ 0.251",
+    lapso: 3,
+  },
+  {
+    id: 35,
+    topicId: 35,
+    title: "Distribución Poisson",
+    question: "Si en un hospital ocurren en promedio 2.5 ingresos por hora, ¿cuál es la probabilidad de exactamente 4 ingresos en una hora?",
+    options: [
+      "0.132",
+      "0.150",
+      "0.125",
+      "0.105"
+    ],
+    correctAnswer: "0.132",
+    explanation: "P(X=4) = (e^-2.5 · 2.5⁴)/4! ≈ 0.132",
+    lapso: 3,
+  },
+  {
+    id: 36,
+    topicId: 36,
+    title: "Distribución Normal",
+    question: "En una distribución normal con μ=100 y σ=15, ¿qué porcentaje de valores están entre 70 y 130?",
+    options: [
+      "95%",
+      "68%",
+      "99.7%",
+      "90%"
+    ],
+    correctAnswer: "95%",
+    explanation: "70 y 130 están a 2σ de la media (100±2·15), por lo que contienen el 95% de los datos según la regla 68-95-99.7.",
+    lapso: 3,
+  },
+
+  // ================================= LAPSO 4 =================================
+  {
+    id: 37,
     topicId: 33,
     title: "Hipótesis Nula",
     question: "En una prueba de glucosa, H₀: μ=100 mg/dL. ¿Qué representa H₁?",
@@ -403,7 +465,7 @@ export const exercises: Exercise[] = [
     lapso: 4,
   },
   {
-    id: 34,
+    id: 38,
     topicId: 34,
     title: "Pruebas Unilaterales",
     question: "¿En qué caso se usa una prueba unilateral izquierda?",
@@ -418,7 +480,7 @@ export const exercises: Exercise[] = [
     lapso: 4,
   },
   {
-    id: 35,
+    id: 39,
     topicId: 35,
     title: "Potencia Estadística",
     question: "Si β=0.20, ¿cuál es la potencia?",
@@ -428,7 +490,7 @@ export const exercises: Exercise[] = [
     lapso: 4,
   },
   {
-    id: 36,
+    id: 40,
     topicId: 36,
     title: "Grados de Libertad",
     question: "En una prueba t con n=18, ¿cuántos grados de libertad hay?",
@@ -438,7 +500,7 @@ export const exercises: Exercise[] = [
     lapso: 4,
   },
   {
-    id: 37,
+    id: 41,
     topicId: 37,
     title: "t-Student vs Normal",
     question: "¿Por qué la distribución t tiene colas más pesadas?",
@@ -455,7 +517,7 @@ export const exercises: Exercise[] = [
 
   // ================================= LAPSO 5 =================================
   {
-    id: 38,
+    id: 42,
     topicId: 38,
     title: "Pirámides Poblacionales",
     question: "¿Qué indica una pirámide de base ancha?",
@@ -470,7 +532,7 @@ export const exercises: Exercise[] = [
     lapso: 5,
   },
   {
-    id: 39,
+    id: 43,
     topicId: 39,
     title: "Tasa de Dependencia",
     question:
@@ -481,7 +543,7 @@ export const exercises: Exercise[] = [
     lapso: 5,
   },
   {
-    id: 40,
+    id: 44,
     topicId: 40,
     title: "Ajuste de Tasas",
     question:

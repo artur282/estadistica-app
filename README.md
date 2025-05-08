@@ -124,7 +124,6 @@ La aplicación abarca los siguientes temas estadísticos:
 - [x] Ejercicios interactivos
 - [x] Visualizaciones de distribución normal
 - [ ] Perfil de usuario y progreso con IndexedDB
-- [ ] Modo oscuro/claro
 - [ ] Animaciones con Motion
 
 ## 👥 Contribución
