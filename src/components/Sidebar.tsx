@@ -5,6 +5,7 @@ import {
   ChartBarIcon,
   Bars3Icon,
 } from "@heroicons/react/24/outline";
+import logo from '../assets/logo.png';
 
 // Eliminar el uso innecesario de useState
 interface SidebarProps {
@@ -32,9 +33,10 @@ export default function Sidebar({
           isSidebarOpen ? "translate-x-0" : "-translate-x-full"
         } lg:translate-x-0 lg:static lg:min-h-full`}
       >
-        <h2 className="text-xl font-bold mb-6 text-gray-700">
-          Estadística App
-        </h2>
+        <div className="flex items-center mb-6">
+          <img src={logo} alt="MediStats logo" className="h-8 w-8 mr-2" />
+          <h2 className="text-xl font-bold text-gray-700">MediStats</h2>
+        </div>
         <ul className="space-y-2">
           {[
             { to: "/", name: "Teoría", icon: BookOpenIcon },

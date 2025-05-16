@@ -206,7 +206,7 @@ export const statisticsTopics: TheoryTopic[] = [
     - Rango intercuartílico: Q3 - Q1
     - Varianza: Promedio desviaciones al cuadrado
     - CV: Dispersión relativa (% respecto media)`,
-    formula: "IQR = Q_3 - Q_1\\nCV = \\frac{\\sigma}{|\\bar{x}|} \\times 100",
+    formula: "IQR = Q_3 - Q_1\\\\CV = \\frac{\\sigma}{|\\bar{x}|} \\times 100\\%",
     example: "Presión arterial: σ=12 mmHg, CV=10% (baja variabilidad)",
     lapso: 1,
   },
