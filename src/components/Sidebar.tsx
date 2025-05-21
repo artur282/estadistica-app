@@ -42,7 +42,7 @@ export default function Sidebar({
             { to: "/", name: "Teoría", icon: BookOpenIcon },
             { to: "/ejemplos", name: "Ejemplo", icon: ChartBarIcon },
             { to: "/ejercicios", name: "Ejercicios", icon: CalculatorIcon },
-            // { to: "/progreso", name: "Progreso", icon: Bars3Icon },
+            { to: "/progreso", name: "Progreso", icon: Bars3Icon },
           ].map((item) => (
             <li key={item.to}>
               <NavLink
