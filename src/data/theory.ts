@@ -5,6 +5,23 @@ export interface TheoryTopic {
   example?: string;
   formula?: string;
   lapso: number;
+  graphData?: {
+    type: 'bar' | 'line' | 'pie';
+    data: Array<any>; // Keep 'any' for flexibility with Recharts data types
+    options?: {
+      // Common options
+      title?: string;
+      xAxisKey?: string;
+      yAxisKey?: string; // Can be used for Line and Bar y-axis name
+      // Bar chart specific
+      barKey?: string;
+      // Line chart specific
+      lineKey?: string;
+      // Pie chart specific
+      dataKey?: string; // Key for the value of each slice
+      nameKey?: string; // Key for the name of each slice
+    };
+  };
 }
 
 export const statisticsTopics: TheoryTopic[] = [
@@ -110,6 +127,16 @@ export const statisticsTopics: TheoryTopic[] = [
     formula: "χ² = \\sum\\frac{(O-E)^2}{E} (prueba categóricas)",
     example: "Variable confusora: Tabaquismo en estudio de cáncer pulmonar",
     lapso: 1,
+    graphData: {
+      type: 'pie',
+      data: [
+        { name: 'Cualitativas Nominales', value: 25 },
+        { name: 'Cualitativas Ordinales', value: 15 },
+        { name: 'Cuantitativas Discretas', value: 30 },
+        { name: 'Cuantitativas Continuas', value: 30 },
+      ],
+      options: { dataKey: 'value', nameKey: 'name', title: 'Distribución de Tipos de Variables en un Estudio Ficticio' }
+    }
   },
   {
     id: 9,
@@ -185,6 +212,15 @@ export const statisticsTopics: TheoryTopic[] = [
     example:
       "Media: 8.2 días estancia\nMediana: 6 días (distribución asimétrica)",
     lapso: 1,
+    graphData: {
+      type: 'bar',
+      data: [
+        { name: 'Media', value: 8.2 },
+        { name: 'Mediana', value: 6 },
+        { name: 'Moda', value: 5 }
+      ],
+      options: { xAxisKey: 'name', barKey: 'value', title: 'Ejemplo de Medidas de Tendencia Central' }
+    }
   },
   {
     id: 15,
@@ -409,6 +445,19 @@ export const statisticsTopics: TheoryTopic[] = [
       "f(x) = \\frac{1}{σ\\sqrt{2π}} e^{-\\frac{1}{2}(\\frac{x-μ}{σ})^2}",
     example: "Talla adultos: μ=170 cm, σ=10 cm → 95% entre 150-190 cm",
     lapso: 2,
+    graphData: {
+      type: 'line',
+      data: [
+        { name: '-3σ', value: 0.1 },
+        { name: '-2σ', value: 2.3 },
+        { name: '-1σ', value: 15.9 },
+        { name: 'μ', value: 50 },
+        { name: '+1σ', value: 84.1 },
+        { name: '+2σ', value: 97.7 },
+        { name: '+3σ', value: 99.9 }
+      ],
+      options: { xAxisKey: 'name', lineKey: 'value', title: 'Curva de Distribución Normal Acumulada (Percentiles)' }
+    }
   },
 
   // ================================= LAPSO 3 =================================

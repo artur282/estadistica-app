@@ -2,6 +2,7 @@ import React, { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { CheckCircleIcon, XCircleIcon } from "@heroicons/react/24/solid";
 import { exercises } from "../data/exercises";
+import { saveExerciseProgress, ExerciseProgress } from "../utils/db"; // Import db utils
 
 // Obtener lapsos únicos ordenados
 const uniqueLapsos = Array.from(
@@ -13,6 +14,8 @@ const Exercise: React.FC = () => {
   const [currentExerciseIndex, setCurrentExerciseIndex] = useState(0);
   const [selectedOption, setSelectedOption] = useState<string | null>(null);
   const [showAnswer, setShowAnswer] = useState(false);
+  const [startTime, setStartTime] = useState<Date | null>(null); // Add startTime state
+  const [timeSpent, setTimeSpent] = useState<number>(0); // Add timeSpent state
 
   // Filtrar ejercicios según el lapso seleccionado
   const filteredExercises = exercises.filter((ex) =>
@@ -25,6 +28,7 @@ const Exercise: React.FC = () => {
     setCurrentExerciseIndex(0);
     setSelectedOption(null);
     setShowAnswer(false);
+    setStartTime(new Date()); // Record start time on filter change
   };
 
   const handleLapsoChange = (e: React.ChangeEvent<HTMLSelectElement>) => {
@@ -36,17 +40,64 @@ const Exercise: React.FC = () => {
     setSelectedOption(option);
   };
 
-  const handleSubmit = () => {
+  const handleSubmit = async () => {
     setShowAnswer(true);
+
+    // Save exercise progress
+    if (currentExercise && selectedOption && startTime) {
+      const endTime = new Date();
+      const calculatedTimeSpent = Math.round((endTime.getTime() - startTime.getTime()) / 1000); // in seconds
+      setTimeSpent(calculatedTimeSpent);
+
+      const progressData: ExerciseProgress = {
+        exerciseId: currentExercise.id, // Assuming 'id' is the exerciseId
+        topicId: currentExercise.lapso, // Assuming 'lapso' is the topicId
+        status: 'attempted', // Or 'completed' based on your logic
+        selectedAnswer: selectedOption,
+        isCorrect: selectedOption === currentExercise.correctAnswer,
+        timestamp: new Date(),
+        timeSpent: calculatedTimeSpent, // Add timeSpent
+        // score can be added later
+      };
+      try {
+        await saveExerciseProgress(progressData);
+        console.log("Exercise progress saved:", progressData);
+      } catch (error) {
+        console.error("Failed to save exercise progress:", error);
+      }
+    }
   };
 
   const handleNext = () => {
     setSelectedOption(null);
     setShowAnswer(false);
+    setStartTime(new Date()); // Record start time on next exercise
     setCurrentExerciseIndex((prevIndex) =>
       prevIndex < filteredExercises.length - 1 ? prevIndex + 1 : 0
     );
   };
+
+  // Effect to set initial start time
+  React.useEffect(() => {
+    setStartTime(new Date());
+  }, [currentExerciseIndex]); // Also reset when exercise changes directly
+
+  // Effect for beforeunload warning
+  React.useEffect(() => {
+    const handleBeforeUnload = (event: BeforeUnloadEvent) => {
+      if (startTime && !showAnswer) {
+        event.preventDefault();
+        // Standard browser warning message (modern browsers might show a generic message)
+        event.returnValue = 'Your progress will be lost if you leave this page.'; 
+      }
+    };
+
+    window.addEventListener('beforeunload', handleBeforeUnload);
+
+    return () => {
+      window.removeEventListener('beforeunload', handleBeforeUnload);
+    };
+  }, [startTime, showAnswer]);
 
   if (!filteredExercises.length) {
     return (

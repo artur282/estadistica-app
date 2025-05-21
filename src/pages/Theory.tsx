@@ -1,7 +1,26 @@
 import { useState } from "react";
-import { statisticsTopics } from "../data/theory";
+import { statisticsTopics, TheoryTopic } from "../data/theory"; // Import TheoryTopic
 import "katex/dist/katex.min.css";
 import katex from "katex";
+import {
+  ResponsiveContainer,
+  LineChart,
+  BarChart,
+  PieChart,
+  XAxis,
+  YAxis,
+  CartesianGrid,
+  Tooltip,
+  Legend,
+  Line,
+  Bar,
+  Pie,
+  Cell,
+} from "recharts";
+
+// Define some colors for pie chart slices
+const COLORS = ["#0088FE", "#00C49F", "#FFBB28", "#FF8042", "#AF19FF", "#FF1919"];
+
 
 export default function Theory() {
   const [selectedLapso, setSelectedLapso] = useState<number>(0);
@@ -93,6 +112,57 @@ export default function Theory() {
               <p className="text-gray-600 leading-relaxed text-sm md:text-base">
                 {topic.example}
               </p>
+            </div>
+          )}
+
+          {topic.graphData && (
+            <div className="mt-6 md:mt-8 p-4 border-t border-gray-200">
+              <h3 className="text-lg font-semibold text-gray-700 mb-4 text-center">
+                {topic.graphData.options?.title || `Gráfico Ilustrativo: ${topic.title}`}
+              </h3>
+              <ResponsiveContainer width="100%" height={400}>
+                {topic.graphData.type === 'bar' && topic.graphData.options?.xAxisKey && topic.graphData.options.barKey && (
+                  <BarChart data={topic.graphData.data} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey={topic.graphData.options.xAxisKey} />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Bar dataKey={topic.graphData.options.barKey} fill="#8884d8" />
+                  </BarChart>
+                )}
+                {topic.graphData.type === 'line' && topic.graphData.options?.xAxisKey && topic.graphData.options.lineKey && (
+                  <LineChart data={topic.graphData.data} margin={{ top: 5, right: 20, left: 0, bottom: 5 }}>
+                    <CartesianGrid strokeDasharray="3 3" />
+                    <XAxis dataKey={topic.graphData.options.xAxisKey} />
+                    <YAxis />
+                    <Tooltip />
+                    <Legend />
+                    <Line type="monotone" dataKey={topic.graphData.options.lineKey} stroke="#82ca9d" activeDot={{ r: 8 }} />
+                  </LineChart>
+                )}
+                {topic.graphData.type === 'pie' && topic.graphData.options?.dataKey && topic.graphData.options.nameKey && (
+                  <PieChart>
+                    <Pie
+                      data={topic.graphData.data}
+                      cx="50%"
+                      cy="50%"
+                      labelLine={false}
+                      label={({ name, percent }) => `${name}: ${(percent * 100).toFixed(0)}%`}
+                      outerRadius={150}
+                      fill="#8884d8"
+                      dataKey={topic.graphData.options.dataKey}
+                      nameKey={topic.graphData.options.nameKey}
+                    >
+                      {topic.graphData.data.map((entry, index) => (
+                        <Cell key={`cell-${index}`} fill={COLORS[index % COLORS.length]} />
+                      ))}
+                    </Pie>
+                    <Tooltip />
+                    <Legend />
+                  </PieChart>
+                )}
+              </ResponsiveContainer>
             </div>
           )}
         </section>
