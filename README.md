@@ -52,7 +52,7 @@ Puedes probar la versión en vivo de la aplicación en: [estadistica-app.ejemplo
 1. **Clona el repositorio:**
 
    ```bash
-   git clone https://github.com/usuario/estadistica-app.git
+   git clone https://github.com/artur282/estadistica-app.git
    cd estadistica-app
    ```
 
