@@ -1,14 +1,22 @@
-import React, { useState, useEffect } from 'react';
-import { getUserProfile, saveUserProfile, getAllExerciseProgress, UserProfile, ExerciseProgress } from '../utils/db';
+import React, { useState, useEffect } from "react";
+import {
+  getUserProfile,
+  saveUserProfile,
+  getAllExerciseProgress,
+  UserProfile,
+  ExerciseProgress,
+} from "../utils/db";
 
 const Progress: React.FC = () => {
-  const [userName, setUserName] = useState<string>('');
-  const [storedUserName, setStoredUserName] = useState<string | undefined>(undefined);
+  const [userName, setUserName] = useState<string>("");
+  const [storedUserName, setStoredUserName] = useState<string | undefined>(
+    undefined
+  );
   const [progress, setProgress] = useState<ExerciseProgress[]>([]);
   const [loading, setLoading] = useState<boolean>(true);
 
   // Mock userId for now
-  const userId = 'defaultUser';
+  const userId = "defaultUser";
 
   useEffect(() => {
     const fetchData = async () => {
@@ -39,10 +47,10 @@ const Progress: React.FC = () => {
     try {
       await saveUserProfile(profile);
       setStoredUserName(userName);
-      alert('Nombre de usuario guardado!');
+      alert("Nombre de usuario guardado!");
     } catch (error) {
       console.error("Error saving user name:", error);
-      alert('Error al guardar el nombre de usuario.');
+      alert("Error al guardar el nombre de usuario.");
     }
   };
 
@@ -51,19 +59,19 @@ const Progress: React.FC = () => {
   }
 
   return (
-    <div style={{ padding: '20px', fontFamily: 'Arial, sans-serif' }}>
+    <div style={{ padding: "20px", fontFamily: "Arial, sans-serif" }}>
       <h2>Progreso del Usuario</h2>
 
-      <div style={{ marginBottom: '20px' }}>
+      <div style={{ marginBottom: "20px" }}>
         <h3>Perfil de Usuario</h3>
         <input
           type="text"
           value={userName}
           onChange={handleUserNameChange}
           placeholder="Ingresa tu nombre de usuario"
-          style={{ marginRight: '10px', padding: '5px' }}
+          style={{ marginRight: "10px", padding: "5px" }}
         />
-        <button onClick={handleSaveUserName} style={{ padding: '5px 10px' }}>
+        <button onClick={handleSaveUserName} style={{ padding: "5px 10px" }}>
           Guardar Nombre
         </button>
         {storedUserName && <p>Nombre guardado: {storedUserName}</p>}
@@ -74,7 +82,7 @@ const Progress: React.FC = () => {
         {progress.length === 0 ? (
           <p>No hay progreso registrado.</p>
         ) : (
-          <table style={{ width: '100%', borderCollapse: 'collapse' }}>
+          <table style={{ width: "100%", borderCollapse: "collapse" }}>
             <thead>
               <tr>
                 <th style={tableHeaderStyle}>ID Ejercicio</th>
@@ -94,10 +102,12 @@ const Progress: React.FC = () => {
                   <td style={tableCellStyle}>{item.topicId}</td>
                   <td style={tableCellStyle}>{item.status}</td>
                   <td style={tableCellStyle}>{item.selectedAnswer}</td>
-                  <td style={tableCellStyle}>{item.isCorrect ? 'Sí' : 'No'}</td>
-                  <td style={tableCellStyle}>{item.score ?? 'N/A'}</td>
-                  <td style={tableCellStyle}>{item.timeSpent ?? 'N/A'}</td>
-                  <td style={tableCellStyle}>{new Date(item.timestamp).toLocaleString()}</td>
+                  <td style={tableCellStyle}>{item.isCorrect ? "Sí" : "No"}</td>
+                  <td style={tableCellStyle}>{item.score ?? "N/A"}</td>
+                  <td style={tableCellStyle}>{item.timeSpent ?? "N/A"}</td>
+                  <td style={tableCellStyle}>
+                    {new Date(item.timestamp).toLocaleString()}
+                  </td>
                 </tr>
               ))}
             </tbody>
@@ -109,16 +119,16 @@ const Progress: React.FC = () => {
 };
 
 const tableHeaderStyle: React.CSSProperties = {
-  borderBottom: '2px solid #ddd',
-  padding: '8px',
-  textAlign: 'left',
-  backgroundColor: '#f2f2f2',
+  borderBottom: "2px solid #ddd",
+  padding: "8px",
+  textAlign: "left",
+  backgroundColor: "#f2f2f2",
 };
 
 const tableCellStyle: React.CSSProperties = {
-  borderBottom: '1px solid #ddd',
-  padding: '8px',
-  textAlign: 'left',
+  borderBottom: "1px solid #ddd",
+  padding: "8px",
+  textAlign: "left",
 };
 
 export default Progress;
