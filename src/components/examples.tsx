@@ -14,10 +14,6 @@ import {
   Line,
   ScatterChart,
   Scatter,
-  PieChart,
-  Pie,
-  Cell,
-  Legend,
 } from "recharts";
 import {
   xAxisConfig,
@@ -936,7 +932,6 @@ const SampleSizeSimulator = () => {
 
   // Calcular Z crítico
   const getZCritical = (confidence: number): number => {
-    const alpha = (100 - confidence) / 100;
     const zValues: { [key: number]: number } = {
       90: 1.645,
       95: 1.96,
