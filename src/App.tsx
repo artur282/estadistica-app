@@ -10,9 +10,10 @@ export default function App() {
     <Routes>
       <Route path="/" element={<Layout />}>
         <Route index element={<Theory />} />
-        <Route path="/ejemplos" element={<Examples/>} />
-        <Route path="/ejercicios" element={<Exercise/>} />
-        <Route path="/progreso" element={<Progress />} /> {/* Use the Progress component */}
+        <Route path="/ejemplos" element={<Examples />} />
+        <Route path="/ejercicios" element={<Exercise />} />
+        <Route path="/progreso" element={<Progress />} />{" "}
+        {/* Use the Progress component */}
       </Route>
     </Routes>
   );

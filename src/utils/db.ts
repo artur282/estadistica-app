@@ -1,4 +1,4 @@
-import { openDB, DBSchema, IDBPDatabase } from 'idb';
+import { openDB, DBSchema, IDBPDatabase } from "idb";
 
 interface UserProfile {
   userId: string;
@@ -8,12 +8,25 @@ interface UserProfile {
 interface ExerciseProgress {
   exerciseId: number;
   topicId: number;
-  status: 'completed' | 'attempted';
+  status: "completed" | "attempted";
   selectedAnswer: string;
   isCorrect: boolean;
   score?: number;
   timeSpent?: number;
   timestamp: Date;
+}
+
+interface ExerciseSession {
+  sessionId: string;
+  userId: string;
+  totalQuestions: number;
+  correctAnswers: number;
+  incorrectAnswers: number;
+  totalTimeSpent: number;
+  completionPercentage: number;
+  startTime: Date;
+  endTime: Date;
+  isCompleted: boolean;
 }
 
 interface MyDB extends DBSchema {
@@ -25,46 +38,84 @@ interface MyDB extends DBSchema {
     key: number;
     value: ExerciseProgress;
   };
+  exerciseSessions: {
+    key: string;
+    value: ExerciseSession;
+  };
 }
 
 async function initDB(): Promise<IDBPDatabase<MyDB>> {
-  const db = await openDB<MyDB>('EstadisticaAppDB', 1, {
-    upgrade(db) {
-      if (!db.objectStoreNames.contains('userProfile')) {
-        db.createObjectStore('userProfile', { keyPath: 'userId' });
+  const db = await openDB<MyDB>("EstadisticaAppDB", 2, {
+    upgrade(db, oldVersion) {
+      if (!db.objectStoreNames.contains("userProfile")) {
+        db.createObjectStore("userProfile", { keyPath: "userId" });
       }
-      if (!db.objectStoreNames.contains('exerciseProgress')) {
-        db.createObjectStore('exerciseProgress', { keyPath: 'exerciseId' });
+      if (!db.objectStoreNames.contains("exerciseProgress")) {
+        db.createObjectStore("exerciseProgress", { keyPath: "exerciseId" });
+      }
+      if (oldVersion < 2 && !db.objectStoreNames.contains("exerciseSessions")) {
+        db.createObjectStore("exerciseSessions", { keyPath: "sessionId" });
       }
     },
   });
   return db;
 }
 
-async function getUserProfile(userId: string): Promise<UserProfile | undefined> {
+async function getUserProfile(
+  userId: string
+): Promise<UserProfile | undefined> {
   const db = await initDB();
-  return db.get('userProfile', userId);
+  return db.get("userProfile", userId);
 }
 
 async function saveUserProfile(profile: UserProfile): Promise<void> {
   const db = await initDB();
-  await db.put('userProfile', profile);
+  await db.put("userProfile", profile);
 }
 
-async function getExerciseProgress(exerciseId: number): Promise<ExerciseProgress | undefined> {
+async function getExerciseProgress(
+  exerciseId: number
+): Promise<ExerciseProgress | undefined> {
   const db = await initDB();
-  return db.get('exerciseProgress', exerciseId);
+  return db.get("exerciseProgress", exerciseId);
 }
 
 async function saveExerciseProgress(progress: ExerciseProgress): Promise<void> {
   const db = await initDB();
-  await db.put('exerciseProgress', progress);
+  await db.put("exerciseProgress", progress);
 }
 
 async function getAllExerciseProgress(): Promise<ExerciseProgress[]> {
   const db = await initDB();
-  return db.getAll('exerciseProgress');
+  return db.getAll("exerciseProgress");
 }
 
-export { initDB, getUserProfile, saveUserProfile, getExerciseProgress, saveExerciseProgress, getAllExerciseProgress };
-export type { UserProfile, ExerciseProgress };
+async function saveExerciseSession(session: ExerciseSession): Promise<void> {
+  const db = await initDB();
+  await db.put("exerciseSessions", session);
+}
+
+async function getAllExerciseSessions(): Promise<ExerciseSession[]> {
+  const db = await initDB();
+  return db.getAll("exerciseSessions");
+}
+
+async function getExerciseSession(
+  sessionId: string
+): Promise<ExerciseSession | undefined> {
+  const db = await initDB();
+  return db.get("exerciseSessions", sessionId);
+}
+
+export {
+  initDB,
+  getUserProfile,
+  saveUserProfile,
+  getExerciseProgress,
+  saveExerciseProgress,
+  getAllExerciseProgress,
+  saveExerciseSession,
+  getAllExerciseSessions,
+  getExerciseSession,
+};
+export type { UserProfile, ExerciseProgress, ExerciseSession };
