@@ -123,9 +123,9 @@ La aplicación abarca los siguientes temas estadísticos:
 - [x] Implementación de teoría básica
 - [x] Ejercicios interactivos
 - [x] Visualizaciones de distribución normal
-- [ ] Perfil de usuario y progreso con IndexedDB
-- [ ] Animaciones con Motion
-- [ ] Ejemplos para cada teoria
+- [x] Perfil de usuario y progreso con IndexedDB
+- [x] Animaciones con Motion
+- [x] Ejemplos para cada teoria
 
 ## 👥 Contribución
 
